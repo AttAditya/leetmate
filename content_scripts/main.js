@@ -1,0 +1,5 @@
+setupProfile();
+setupStreak();
+
+send();
+

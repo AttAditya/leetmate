@@ -1,0 +1,51 @@
+{
+    "manifest_version": 3,
+    "name": "LeetMate",
+    "version": "0.0.0",
+    "description": "LeetMate - LeetClub's Companion Extension",
+    "icons": {
+        "32": "images/LeetMate32.png",
+        "48": "images/LeetMate48.png",
+        "64": "images/LeetMate48.png",
+        "128": "images/LeetMate128.png",
+        "256": "images/LeetMate256.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://*.leetcode.com/*"],
+            "js": [
+                "content_scripts/data.js",
+                "content_scripts/profile.js",
+                "content_scripts/streak.js",
+                "content_scripts/connection.js",
+                "content_scripts/main.js"
+            ]
+        },
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "content_scripts/data.js",
+                "content_scripts/profile.js",
+                "content_scripts/streak.js"
+            ]
+        }
+    ],
+    "background": {
+        "service_worker": "background_scripts/reminders.js"
+    },
+    "action": {
+        "default_icon": {
+            "32": "images/LeetMate32.png",
+            "48": "images/LeetMate48.png",
+            "64": "images/LeetMate64.png",
+            "128": "images/LeetMate128.png",
+            "256": "images/LeetMate256.png"
+        },
+        "default_title": "Click Me",
+        "default_popup": "popup/index.html"
+    },
+    "permissions": [
+        "notifications",
+        "tabs"
+    ]
+}
