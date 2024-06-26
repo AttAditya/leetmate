@@ -8,26 +8,21 @@ async function sendStreakData() {
 
     let create_profile_url = `/api/users/${profile}`;
     let streak_url = `/api/users/${profile}/streak`;
-    let refresh_url = `/api/users/${profile}/refresh`;
 
     await fetch(`${server_domain}${create_profile_url}`).catch((err) => {
         console.log("Error creating data", err);
-    });
-
-    await fetch(`${server_domain}${streak_url}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            streak: loadData("streak")
-        })
-    }).catch((err) => {
-        console.log("Error sending data", err);
-    });
-
-    await fetch(`${server_domain}${refresh_url}`).catch((err) => {
-        console.log("Error refreshing data", err);
+    }).then(async (...args) => {
+        await fetch(`${server_domain}${streak_url}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                streak: loadData("streak")
+            })
+        }).catch((err) => {
+            console.log("Error sending data", err);
+        });
     });
 }
 
