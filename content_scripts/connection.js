@@ -65,9 +65,9 @@ function send() {
     let now = new Date();
     let time_diff = now - last_sent;
 
-    let time_diff_hours = time_diff / (1000 * 60 * 60);
+    let time_diff_minutes = time_diff / (1000 * 60);
 
-    if (time_diff_hours >= 6) {
+    if (time_diff_minutes >= 4) {
         waitAndSendStreak();
         saveData("last_sent", now);
     }
